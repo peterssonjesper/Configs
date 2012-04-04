@@ -34,6 +34,7 @@ SAVEHIST=2048
 # alias
 alias l="ls"
 alias ll="l -lah"
+alias scp="noglob scp"
 function dump() { scp -P2006 -r "$@" molly.doubleint.com:dump/ }
 alias irc="ssh -t molly.doubleint.com -p 222 screen -rdU"
 
