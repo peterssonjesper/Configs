@@ -2,8 +2,9 @@ set term=builtin_ansi
 syn on
 set autoindent
 colorscheme koehler
-set tabstop=3
-set shiftwidth=3
+set tabstop=4
+set expandtab
+set shiftwidth=4
 set encoding=utf8
 set number
 set ruler
@@ -18,5 +19,9 @@ set undolevels=1000
 set title
 set visualbell
 set noerrorbells
-:set foldmethod=marker
-:set foldmarker=/*,*/
+set foldmethod=marker
+set foldmarker=/*,*/
+set copyindent
+
+""" Remap :W to :w
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
