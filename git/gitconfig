@@ -1,0 +1,10 @@
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[user]
+	name = Jesper Petersson
+	email = jesper@jpetersson.se
+[alias]
+	tree = log --graph --oneline --all
+[color]
+	ui = true
