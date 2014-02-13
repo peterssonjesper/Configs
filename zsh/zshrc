@@ -3,10 +3,7 @@ export CLICOLOR=1
 export LC_CTYPE=sv_SE.UTF-8
 export SVN_EDITOR="vim"
 export EDITOR="emacs" # Sad, but true.
-export PATH=/usr/local/bin:/usr/local/mysql/bin:$PATH
-git config --global core.editor "vim"
-git config --global user.name "Jesper Petersson"
-git config --global user.email jesper@jpetersson.se
+export PATH=/usr/local/bin:/opt/local/bin:$PATH
 
 # misc
 autoload colors; colors;
@@ -36,12 +33,11 @@ SAVEHIST=2048
 alias l="ls"
 alias ll="l -lah"
 alias scp="noglob scp"
-function dump() { scp -P2006 -r "$@" molly.doubleint.com:dump/ }
 alias irc="ssh -t molly.doubleint.com -p 222 screen -rdU"
 alias decode_json='python -c "import sys, json; print json.dumps(json.load(sys.stdin), sort_keys=True, indent=4)"'
+alias bower="noglob bower --no-color"
 alias gst="git status"
 alias gco="git checkout"
-alias gitx="/Applications/GitX.app/Contents/MacOS/GitX ."
 
 # Bind keys
 bindkey '^a' beginning-of-line
@@ -152,3 +148,6 @@ fg_no_colour=$'%{\e[0m%}'
 # Prompt
 PROMPT=$'$fg_white%n$fg_green@$fg_white%m$fg_green%# $fg_white'
 RPROMPT=$'$fg_green [%~]$fg_white$(prompt_git_info)'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
