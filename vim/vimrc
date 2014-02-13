@@ -1,9 +1,11 @@
 set term=builtin_ansi
 syn on
 set autoindent
+
 colorscheme koehler
+
 set tabstop=4
-set expandtab
+set noexpandtab
 set shiftwidth=4
 set encoding=utf8
 set number
@@ -22,8 +24,31 @@ set noerrorbells
 set foldmethod=marker
 set foldmarker=/*,*/
 set copyindent
+set exrc
+set secure
+set list
+set listchars=tab:>-,trail:_,extends:#,nbsp:_
 
-""" Remap :W to :w
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle 'garbas/vim-snipmate'
+Bundle 'groenewege/vim-less'
+
+autocmd vimenter * NERDTree " Autoopen NERDtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " Exit if only NERDtree present
+
+filetype plugin indent on
+autocmd filetype python set expandtab
+autocmd filetype ruby set expandtab
+autocmd BufRead,BufNewFile *.less set syntax=less
+
+" Remap :W to :w
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
 
 " Unbind the cursor keys in insert, normal and visual modes.
@@ -32,3 +57,13 @@ for prefix in ['i', 'n', 'v']
     exe prefix . "noremap " . key . " <Nop>"
   endfor
 endfor
+
+" Map ctrl+n to toggle NERDtree
+map <C-n> :NERDTreeToggle<CR>
+
+if has("gui_running")
+	colorscheme smyck
+end
+
+" Store swap files in fixed location, not current directory.
+set dir=~/.vimswap//,.
