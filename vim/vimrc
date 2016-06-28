@@ -41,7 +41,6 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'groenewege/vim-less'
 call vundle#end()
 
-autocmd vimenter * NERDTree " Autoopen NERDtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " Exit if only NERDtree present
 
 filetype plugin indent on
@@ -68,3 +67,20 @@ end
 
 " Store swap files in fixed location, not current directory.
 set dir=~/.vimswap//,.
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+function! s:CloseIfOnlyNerdTreeLeft()
+	if exists("t:NERDTreeBufName")
+		if bufwinnr(t:NERDTreeBufName) != -1
+			if winnr("$") == 1
+				q
+			endif
+		endif
+	endif
+endfunction
+
+" Focus on main buffer instead of NERDTree
+autocmd vimenter * NERDTree
+autocmd VimEnter * wincmd p
