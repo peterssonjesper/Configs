@@ -29,16 +29,17 @@ set secure
 set list
 set listchars=tab:>-,trail:_,extends:#,nbsp:_
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 Bundle 'groenewege/vim-less'
+call vundle#end()
 
 autocmd vimenter * NERDTree " Autoopen NERDtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " Exit if only NERDtree present
